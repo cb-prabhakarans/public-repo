@@ -1,0 +1,5702 @@
+{
+  "info" : {
+    "cb-api-version" : 2,
+    "cb-product-catalog-version" : 2,
+    "cb-open-api-spec-generated-on" : 1768396282463,
+    "edp-caspian-spec-generated-on" : 1770010614083
+  },
+  "schemas" : {
+    "credit_note_line_item_taxes" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "is_partial_tax_applied" : {
+          "type" : "boolean"
+        },
+        "tax_juris_type" : {
+          "type" : "string"
+        },
+        "tax_amount_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_juris_name" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_juris_code" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "prorated_taxable_amount" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "date_to" : {
+          "type" : "timestamp"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "is_non_compliance_tax" : {
+          "type" : "boolean"
+        },
+        "date_from" : {
+          "type" : "timestamp"
+        },
+        "taxable_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "line_item_taxes"
+    },
+    "coupons" : {
+      "properties" : {
+        "discount_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "percentage"
+        },
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "redemptions" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "invoice_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "duration_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "forever"
+        },
+        "valid_till" : {
+          "type" : "timestamp"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "discount_percentage" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "status" : {
+          "type" : "string",
+          "default" : "active"
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "invoice_notes" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "period_unit" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "meta_data" : {
+          "type" : "string"
+        },
+        "apply_on" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "archived_at" : {
+          "type" : "timestamp"
+        },
+        "period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "max_redemptions" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "coupon"
+    },
+    "invoice_linked_taxes_withheld" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "tax_withheld_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40,
+          "source_name" : "id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "linked_taxes_withheld"
+    },
+    "invoices" : {
+      "properties" : {
+        "amount_due" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "first_invoice" : {
+          "type" : "boolean"
+        },
+        "shipping_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "vat_number" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "shipping_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "credits_applied" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "term_finalized" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "true"
+        },
+        "amount_adjusted" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "statement_descriptor_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "site_details_at_creation_organization_address" : {
+          "type" : "string"
+        },
+        "shipping_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "statement_descriptor_descriptor" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "local_currency_exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : 0,
+          "maximum_value" : 1000000000
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "shipping_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "paid_at" : {
+          "type" : "timestamp"
+        },
+        "shipping_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "vat_number_prefix" : {
+          "type" : "string",
+          "max_length" : 10
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "tax_origin_registration_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "tax" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "total_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "net_term_days" : {
+          "type" : "integer",
+          "default" : "0"
+        },
+        "amount_to_collect" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_category" : {
+          "type" : "string"
+        },
+        "shipping_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "sub_total_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "expected_payment_date" : {
+          "type" : "timestamp"
+        },
+        "round_off_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "price_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "tax_exclusive"
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "is_gifted" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "void_reason_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "shipping_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "site_details_at_creation_timezone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "total" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "einvoice_reference_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "write_off_amount" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "recurring" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "true"
+        },
+        "einvoice_status" : {
+          "type" : "string"
+        },
+        "po_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "einvoice_message" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "sub_total" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "date" : {
+          "type" : "timestamp"
+        },
+        "generated_at" : {
+          "type" : "timestamp"
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "shipping_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "due_date" : {
+          "type" : "timestamp"
+        },
+        "amount_paid" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "shipping_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "dunning_status" : {
+          "type" : "string"
+        },
+        "einvoice_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "new_sales_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "tax_origin_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "payment_owner" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "shipping_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "voided_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "invoice"
+    },
+    "omnichannel_subscription_items" : {
+      "properties" : {
+        "resumes_at" : {
+          "type" : "timestamp"
+        },
+        "cancelled_at" : {
+          "type" : "timestamp"
+        },
+        "item_id_at_source" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "expiration_reason" : {
+          "type" : "string"
+        },
+        "grace_period_expires_at" : {
+          "type" : "timestamp"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "current_term_start" : {
+          "type" : "timestamp"
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "cancellation_reason" : {
+          "type" : "string"
+        },
+        "expired_at" : {
+          "type" : "timestamp"
+        },
+        "linked_item" : {
+          "type" : "string"
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "upcoming_renewal" : {
+          "type" : "string"
+        },
+        "omnichannel_subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "item_parent_id_at_source" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "has_scheduled_changes" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "auto_renew_status" : {
+          "type" : "string"
+        },
+        "current_term_end" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "omnichannel_subscriptions"
+    },
+    "coupon_item_constraint_criteria" : {
+      "properties" : {
+        "currencies" : {
+          "type" : "string"
+        },
+        "item_family_ids" : {
+          "type" : "string"
+        },
+        "item_price_periods" : {
+          "type" : "string"
+        },
+        "coupon_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "item_type" : {
+          "type" : "string",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "coupons",
+      "source_name" : "item_constraint_criteria"
+    },
+    "business_entities" : {
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "business_entity"
+    },
+    "subscription_discounts" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "percentage" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "included_in_mrr" : {
+          "type" : "boolean",
+          "nullable" : false
+        },
+        "invoice_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "duration_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "forever"
+        },
+        "apply_till" : {
+          "type" : "timestamp"
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "applied_count" : {
+          "type" : "integer"
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "coupon_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "period_unit" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "percentage"
+        },
+        "currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "apply_on" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "index" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions",
+      "source_name" : "discounts"
+    },
+    "subscription_mrr_history" : {
+      "properties" : {
+        "record_end_at" : {
+          "type" : "timestamp"
+        },
+        "subscription_status_previous" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "subscription_mrr_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "subscription_status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "record_recorded_at" : {
+          "type" : "timestamp"
+        },
+        "subscription_mrr" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "id" : {
+          "type" : "long",
+          "is_primary_key" : true,
+          "nullable" : false
+        },
+        "subscription_mrr_difference" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "record_start_at" : {
+          "type" : "timestamp"
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : true
+    },
+    "credit_note_line_item_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "discount_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "line_item_discounts"
+    },
+    "item_custom_fields" : {
+      "properties" : {
+        "item_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "items",
+      "source_name" : "item"
+    },
+    "invoice_line_item_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "discount_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "line_item_discounts"
+    },
+    "invoice_adjustment_credit_notes" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "cn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "adjustment_credit_notes"
+    },
+    "quote_line_item_tiers" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "quote_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "quantity_used" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity_used_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "quotes",
+      "source_name" : "line_item_tiers"
+    },
+    "transaction_linked_payments" : {
+      "properties" : {
+        "transaction_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "payment_txn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40,
+          "source_name" : "id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "transactions",
+      "source_name" : "linked_payments"
+    },
+    "coupon_custom_fields" : {
+      "properties" : {
+        "coupon_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "source_name" : "coupon_id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "coupons",
+      "source_name" : "coupon"
+    },
+    "resent_orders" : {
+      "properties" : {
+        "order_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "reason" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "orders"
+    },
+    "coupon_sets" : {
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "archived_count" : {
+          "type" : "integer"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "redeemed_count" : {
+          "type" : "integer"
+        },
+        "total_count" : {
+          "type" : "integer"
+        },
+        "coupon_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "coupon_set"
+    },
+    "business_entity_transfers" : {
+      "properties" : {
+        "reason_code" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "resource_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "destination_business_entity_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "source_business_entity_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "resource_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "active_resource_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "business_entity_transfer"
+    },
+    "quotes" : {
+      "properties" : {
+        "amount_due" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "shipping_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "vat_number" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "shipping_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "credits_applied" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "contract_term_termination_fee" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "shipping_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "operation_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "shipping_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "vat_number_prefix" : {
+          "type" : "string",
+          "max_length" : 10
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "valid_till" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "tax_category" : {
+          "type" : "string"
+        },
+        "shipping_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "price_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "tax_exclusive"
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "contract_term_start" : {
+          "type" : "timestamp"
+        },
+        "total" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "version" : {
+          "type" : "integer",
+          "default" : "1"
+        },
+        "po_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "sub_total" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "date" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "total_payable" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "shipping_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "amount_paid" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "shipping_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "notes" : {
+          "type" : "string"
+        },
+        "shipping_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "charge_on_acceptance" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "contract_term_end" : {
+          "type" : "timestamp"
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "quote"
+    },
+    "credit_note_allocations" : {
+      "properties" : {
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "allocated_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "invoice_status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "allocated_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "invoice_date" : {
+          "type" : "timestamp"
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "allocations"
+    },
+    "invoice_applied_credits" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "cn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "applied_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "applied_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "applied_credits"
+    },
+    "item_prices" : {
+      "properties" : {
+        "tax_detail_avalara_tax_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "item_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "accounting_detail_accounting_category2" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "tax_detail_tax_profile_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "item_family_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "proration_type" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "show_description_in_quotes" : {
+          "type" : "boolean"
+        },
+        "price" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "accounting_detail_accounting_category3" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "show_description_in_invoices" : {
+          "type" : "boolean"
+        },
+        "external_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "trial_end_action" : {
+          "type" : "string"
+        },
+        "is_taxable" : {
+          "type" : "boolean",
+          "default" : "true"
+        },
+        "tax_detail_taxjar_product_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "trial_period" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "accounting_detail_sku" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "shipping_period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "price_variant_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "accounting_detail_accounting_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "pricing_model" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "flat_fee"
+        },
+        "tax_detail_hsn_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "tax_detail_avalara_sale_type" : {
+          "type" : "string"
+        },
+        "tax_detail_avalara_transaction_type" : {
+          "type" : "integer"
+        },
+        "metadata" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "invoice_notes" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "period_unit" : {
+          "type" : "string"
+        },
+        "accounting_detail_accounting_category1" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "trial_period_unit" : {
+          "type" : "string"
+        },
+        "tax_detail_avalara_service_type" : {
+          "type" : "integer"
+        },
+        "item_type" : {
+          "type" : "string"
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "accounting_detail_accounting_category4" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "archived_at" : {
+          "type" : "timestamp"
+        },
+        "shipping_period_unit" : {
+          "type" : "string"
+        },
+        "free_quantity" : {
+          "type" : "integer",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "free_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "item_price"
+    },
+    "contract_terms" : {
+      "properties" : {
+        "total_contract_value_before_tax" : {
+          "type" : "long",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "billing_cycle" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "contract_end" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "total_contract_value" : {
+          "type" : "long",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "cancellation_cutoff_period" : {
+          "type" : "integer"
+        },
+        "action_at_term_end" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "renew"
+        },
+        "remaining_billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "contract_start" : {
+          "type" : "timestamp",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "contract_term"
+    },
+    "items" : {
+      "properties" : {
+        "included_in_mrr" : {
+          "type" : "boolean"
+        },
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "item_family_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "item_applicability" : {
+          "type" : "string",
+          "default" : "all"
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "is_giftable" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "usage_calculation" : {
+          "type" : "string"
+        },
+        "external_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "metered" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "enabled_in_portal" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "true"
+        },
+        "redirect_url" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "is_shippable" : {
+          "type" : "boolean",
+          "default" : "false"
+        },
+        "gift_claim_redirect_url" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "enabled_for_checkout" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "true"
+        },
+        "metadata" : {
+          "type" : "string"
+        },
+        "unit" : {
+          "type" : "string",
+          "max_length" : 30
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "archived_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "item"
+    },
+    "credit_notes" : {
+      "properties" : {
+        "shipping_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "vat_number" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "shipping_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "site_details_at_creation_organization_address" : {
+          "type" : "string"
+        },
+        "shipping_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "local_currency_exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : 0,
+          "maximum_value" : 1000000000
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "shipping_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "vat_number_prefix" : {
+          "type" : "string",
+          "max_length" : 10
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "reason_code" : {
+          "type" : "string"
+        },
+        "tax_origin_registration_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "total_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "amount_available" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "tax_category" : {
+          "type" : "string"
+        },
+        "shipping_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "amount_allocated" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "reference_invoice_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "sub_total_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "round_off_amount" : {
+          "type" : "long",
+          "minimum_value" : -99,
+          "maximum_value" : 99
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "price_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "tax_exclusive"
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "refunded_at" : {
+          "type" : "timestamp"
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "site_details_at_creation_timezone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "total" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "einvoice_reference_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "einvoice_status" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "einvoice_message" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "sub_total" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "date" : {
+          "type" : "timestamp"
+        },
+        "amount_refunded" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "generated_at" : {
+          "type" : "timestamp"
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "shipping_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "fractional_correction" : {
+          "type" : "long",
+          "minimum_value" : -50000,
+          "maximum_value" : 50000
+        },
+        "shipping_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "einvoice_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "create_reason_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "tax_origin_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "shipping_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "voided_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "credit_note"
+    },
+    "subscription_charged_items" : {
+      "properties" : {
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "last_charged_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions",
+      "source_name" : "charged_items"
+    },
+    "omnichannel_subscriptions" : {
+      "properties" : {
+        "source" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "app_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "id_at_source" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "initial_purchase_transaction_id" : {
+          "type" : "string",
+          "max_length" : 40
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "omnichannel_subscription"
+    },
+    "ramp_item_tiers" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 1
+        },
+        "ramp_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "price" : {
+          "type" : "long",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "pricing_type" : {
+          "type" : "string"
+        },
+        "package_size" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        },
+        "index" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "ramps",
+      "source_name" : "item_tiers"
+    },
+    "quote_line_items" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "entity_description" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "quantity" : {
+          "type" : "integer",
+          "default" : "1"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "description" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 250
+        },
+        "quote_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "item_level_discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_exempt_reason" : {
+          "type" : "string"
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "amount" : {
+          "type" : "long"
+        },
+        "is_taxed" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "date_to" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "reference_line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "pricing_model" : {
+          "type" : "string"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "date_from" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "quotes",
+      "source_name" : "line_items"
+    },
+    "customer_custom_fields" : {
+      "properties" : {
+        "customer_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "customers",
+      "source_name" : "customer"
+    },
+    "order_linked_credit_notes" : {
+      "properties" : {
+        "amount_adjusted" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "order_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "amount_refunded" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "orders",
+      "source_name" : "linked_credit_notes"
+    },
+    "quote_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "discount_type" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "quote_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "coupon_set_code" : {
+          "type" : "string",
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "quotes",
+      "source_name" : "discounts"
+    },
+    "omnichannel_subscription_transactions" : {
+      "properties" : {
+        "omnichannel_transaction_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "omnichannel_subscription_id" : {
+          "type" : "string",
+          "max_length" : 100
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "omnichannel_transactions",
+      "source_name" : "linked_omnichannel_subscriptions"
+    },
+    "ramp_coupons_to_add" : {
+      "properties" : {
+        "ramp_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "coupon_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "apply_till" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "ramps",
+      "source_name" : "coupons_to_add"
+    },
+    "order_line_item_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "discount_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "order_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "orders",
+      "source_name" : "line_item_discounts"
+    },
+    "subscription_item_tiers" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 1
+        },
+        "price" : {
+          "type" : "long",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        },
+        "index" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions",
+      "source_name" : "item_tiers"
+    },
+    "ramp_items_to_add" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "ramp_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "service_period_days" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 730
+        },
+        "unit_price" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "unit_price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "metered_quantity" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "item_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "free_quantity" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "free_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "ramps",
+      "source_name" : "items_to_add"
+    },
+    "item_price_tiers" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 1
+        },
+        "price" : {
+          "type" : "long",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "item_prices",
+      "source_name" : "tiers"
+    },
+    "exchange_rate_daily" : {
+      "properties" : {
+        "date" : {
+          "type" : "timestamp"
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        }
+      },
+      "is_parent_resource" : true
+    },
+    "subscription_mrr_daily_summary" : {
+      "properties" : {
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "exchange_rate_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_difference_from_exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "reporting_currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "mrr_previous_billing_currency" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "billing_currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "mrr_difference" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "reporting_date" : {
+          "type" : "timestamp"
+        },
+        "status_previous" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false
+        },
+        "reporting_timezone" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "mrr_difference_from_subscription_change" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "mrr" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_billing_currency" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        }
+      },
+      "is_parent_resource" : true
+    },
+    "quote_line_item_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "discount_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "quote_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "quotes",
+      "source_name" : "line_item_discounts"
+    },
+    "payment_sources" : {
+      "properties" : {
+        "klarna_pay_now_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "bank_account_account_type" : {
+          "type" : "string"
+        },
+        "upi_vpa" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "paypal_agreement_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_account_holder_type" : {
+          "type" : "string"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "card_first_name" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "venmo_user_name" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "gateway_account_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "card_billing_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "card_funding_type" : {
+          "type" : "string"
+        },
+        "boleto_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "card_last_name" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_mandate_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "amazon_payment_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "bank_account_last4" : {
+          "type" : "string",
+          "max_length" : 4
+        },
+        "card_brand" : {
+          "type" : "string"
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "card_billing_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_echeck_type" : {
+          "type" : "string"
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_direct_debit_scheme" : {
+          "type" : "string"
+        },
+        "card_masked_number" : {
+          "type" : "string",
+          "max_length" : 19
+        },
+        "card_expiry_year" : {
+          "type" : "integer"
+        },
+        "gateway" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "card_iin" : {
+          "type" : "string",
+          "max_length" : 6
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "reference_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 200
+        },
+        "amazon_payment_agreement_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "bank_account_bank_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "card_billing_addr2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "card_billing_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "ip_address" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "valid"
+        },
+        "card_last4" : {
+          "type" : "string",
+          "max_length" : 4
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "boleto_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "card_billing_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "boleto_last4" : {
+          "type" : "string",
+          "max_length" : 4
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "card_expiry_month" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 12
+        },
+        "card_billing_addr1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "bank_account_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "card_billing_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "boleto_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "bank_account_name_on_account" : {
+          "type" : "string",
+          "max_length" : 300
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "paypal_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "issuing_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "bank_account_email" : {
+          "type" : "string",
+          "max_length" : 70
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "payment_source"
+    },
+    "item_family_custom_fields" : {
+      "properties" : {
+        "item_family_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "item_families",
+      "source_name" : "item_family"
+    },
+    "omnichannel_transactions" : {
+      "properties" : {
+        "price_currency" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "price_units" : {
+          "type" : "long"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "transacted_at" : {
+          "type" : "timestamp"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "price_nanos" : {
+          "type" : "long"
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "app_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "id_at_source" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "omnichannel_transaction"
+    },
+    "subscription_coupons" : {
+      "properties" : {
+        "apply_till" : {
+          "type" : "timestamp"
+        },
+        "applied_count" : {
+          "type" : "integer",
+          "nullable" : false,
+          "default" : "0"
+        },
+        "coupon_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "coupon_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions",
+      "source_name" : "coupons"
+    },
+    "coupon_item_constraints" : {
+      "properties" : {
+        "coupon_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "item_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "constraint" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "item_price_ids" : {
+          "type" : "string"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "coupons",
+      "source_name" : "item_constraints"
+    },
+    "subscription_items" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "charge_on_event" : {
+          "type" : "string"
+        },
+        "proration_type" : {
+          "type" : "string"
+        },
+        "billing_period_unit" : {
+          "type" : "string"
+        },
+        "billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "service_period_days" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 730
+        },
+        "unit_price" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "unit_price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "trial_end" : {
+          "type" : "timestamp"
+        },
+        "billing_period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "charge_once" : {
+          "type" : "boolean"
+        },
+        "charge_on_option" : {
+          "type" : "string"
+        },
+        "item_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "free_quantity" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "free_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions"
+    },
+    "quote_line_item_taxes" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "is_partial_tax_applied" : {
+          "type" : "boolean"
+        },
+        "quote_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "tax_juris_type" : {
+          "type" : "string"
+        },
+        "tax_amount_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_juris_name" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_juris_code" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "prorated_taxable_amount" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "date_to" : {
+          "type" : "timestamp"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "is_non_compliance_tax" : {
+          "type" : "boolean"
+        },
+        "date_from" : {
+          "type" : "timestamp"
+        },
+        "taxable_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "quotes",
+      "source_name" : "line_item_taxes"
+    },
+    "ramp_discounts_to_add" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "percentage" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "included_in_mrr" : {
+          "type" : "boolean",
+          "nullable" : false
+        },
+        "invoice_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "duration_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "forever"
+        },
+        "ramp_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "period_unit" : {
+          "type" : "string"
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "percentage"
+        },
+        "apply_on" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "period" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "ramps",
+      "source_name" : "discounts_to_add"
+    },
+    "order_line_items" : {
+      "properties" : {
+        "amount_adjusted" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "order_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "sku" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "fulfillment_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "item_level_discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "refundable_credits_issued" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "unit_price" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "default" : "queued"
+        },
+        "is_shippable" : {
+          "type" : "boolean",
+          "nullable" : false
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "amount_paid" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "invoice_line_item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "fulfillment_quantity" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "refundable_credits" : {
+          "type" : "long",
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "orders"
+    },
+    "item_mrr_discounts_history" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "item_discount_amount" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "item_mrr_id" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "id" : {
+          "type" : "long",
+          "is_primary_key" : true,
+          "nullable" : false
+        },
+        "entity_id" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "item_mrr_history",
+      "source_name" : "mrr_discounts_history"
+    },
+    "item_families" : {
+      "properties" : {
+        "name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "item_family"
+    },
+    "ramp_items_to_update" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity" : {
+          "type" : "integer",
+          "minimum_value" : 1
+        },
+        "ramp_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "service_period_days" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 730
+        },
+        "unit_price" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "unit_price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "metered_quantity" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "item_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "free_quantity" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "free_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "ramps",
+      "source_name" : "items_to_update"
+    },
+    "invoice_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "discount_type" : {
+          "type" : "string"
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "coupon_set_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "discounts"
+    },
+    "invoice_dunning_attempts" : {
+      "properties" : {
+        "transaction_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "dunning_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "auto_collect"
+        },
+        "created_at" : {
+          "type" : "timestamp"
+        },
+        "attempt" : {
+          "type" : "integer",
+          "nullable" : false
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "dunning_attempts"
+    },
+    "invoice_line_items" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "entity_description" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "quantity" : {
+          "type" : "integer",
+          "default" : "1"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "description" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 250
+        },
+        "item_level_discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_exempt_reason" : {
+          "type" : "string"
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "amount" : {
+          "type" : "long"
+        },
+        "is_taxed" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "date_to" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "reference_line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "pricing_model" : {
+          "type" : "string"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "date_from" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "line_items"
+    },
+    "payment_source_mandates" : {
+      "properties" : {
+        "payment_source_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 250
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "payment_sources",
+      "source_name" : "mandates"
+    },
+    "invoice_linked_payments" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "txn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "applied_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "applied_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "linked_payments"
+    },
+    "invoice_issued_credit_notes" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "cn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "issued_credit_notes"
+    },
+    "orders" : {
+      "properties" : {
+        "shipping_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "shipping_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "created_by" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "amount_adjusted" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "shipping_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "order_type" : {
+          "type" : "string"
+        },
+        "rounding_adjustement" : {
+          "type" : "long"
+        },
+        "paid_on" : {
+          "type" : "timestamp"
+        },
+        "shipping_date" : {
+          "type" : "timestamp"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "cancelled_at" : {
+          "type" : "timestamp"
+        },
+        "tax" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "invoice_round_off_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "fulfillment_status" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipped_at" : {
+          "type" : "timestamp"
+        },
+        "original_order_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "shipping_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "shipping_cut_off_date" : {
+          "type" : "timestamp"
+        },
+        "is_resent" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "price_type" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "tax_exclusive"
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "is_gifted" : {
+          "type" : "boolean",
+          "default" : "false"
+        },
+        "shipping_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "total" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "delivered_at" : {
+          "type" : "timestamp"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "reference_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "gift_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "document_number" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "refundable_credits_issued" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "payment_status" : {
+          "type" : "string"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "cancellation_reason" : {
+          "type" : "string"
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "sub_total" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "note" : {
+          "type" : "string",
+          "max_length" : 600
+        },
+        "order_date" : {
+          "type" : "timestamp"
+        },
+        "shipment_carrier" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "default" : "new"
+        },
+        "shipping_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "status_update_at" : {
+          "type" : "timestamp"
+        },
+        "gift_note" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "tracking_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "amount_paid" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "shipping_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "resend_reason" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "shipping_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "discount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "batch_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "resent_status" : {
+          "type" : "string"
+        },
+        "shipping_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "refundable_credits" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "shipping_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "tracking_url" : {
+          "type" : "string",
+          "max_length" : 255
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "order"
+    },
+    "credit_note_discounts" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "discount_type" : {
+          "type" : "string"
+        },
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "coupon_set_code" : {
+          "type" : "string",
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "discounts"
+    },
+    "subscription_mrr_monthly_summary" : {
+      "properties" : {
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "exchange_rate_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_difference_from_exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "reporting_currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "mrr_previous_billing_currency" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "billing_currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "mrr_difference" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "reporting_month" : {
+          "type" : "timestamp"
+        },
+        "status_previous" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false
+        },
+        "reporting_timezone" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "mrr_difference_from_subscription_change" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "mrr" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "exchange_rate" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "mrr_billing_currency" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        }
+      },
+      "is_parent_resource" : true
+    },
+    "order_line_item_taxes" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "order_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "is_partial_tax_applied" : {
+          "type" : "boolean"
+        },
+        "tax_juris_type" : {
+          "type" : "string"
+        },
+        "tax_amount_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_juris_name" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_juris_code" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "prorated_taxable_amount" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "date_to" : {
+          "type" : "timestamp"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "is_non_compliance_tax" : {
+          "type" : "boolean"
+        },
+        "date_from" : {
+          "type" : "timestamp"
+        },
+        "taxable_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "orders",
+      "source_name" : "line_item_taxes"
+    },
+    "item_mrr_history" : {
+      "properties" : {
+        "item_price_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_price_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "record_end_at" : {
+          "type" : "timestamp"
+        },
+        "item_mrr_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "item_quantity_difference" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "item_mrr_difference" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_discount_difference" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_quantity" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "record_recorded_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "item_price_difference" : {
+          "type" : "decimal",
+          "nullable" : false,
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_price" : {
+          "type" : "decimal",
+          "nullable" : false,
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "id" : {
+          "type" : "long",
+          "is_primary_key" : true,
+          "nullable" : false
+        },
+        "item_quantity_previous" : {
+          "type" : "long",
+          "nullable" : false
+        },
+        "item_discount" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "item_mrr" : {
+          "type" : "decimal",
+          "nullable" : false,
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "item_discount_previous" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "record_start_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : true
+    },
+    "transaction_linked_refunds" : {
+      "properties" : {
+        "transaction_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "refund_txn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40,
+          "source_name" : "txn_id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "transactions",
+      "source_name" : "linked_refunds"
+    },
+    "coupon_constraints" : {
+      "properties" : {
+        "coupon_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "value" : {
+          "type" : "string",
+          "max_length" : 65000
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "coupons"
+    },
+    "invoice_notes" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "note" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 65000
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "entity_type" : {
+          "type" : "string"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "notes"
+    },
+    "invoice_line_item_tiers" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "quantity_used" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity_used_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "line_item_tiers"
+    },
+    "credit_note_linked_tax_withheld_refunds" : {
+      "properties" : {
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "tax_withheld_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40,
+          "source_name" : "id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "linked_tax_withheld_refunds"
+    },
+    "invoice_line_item_taxes" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "nullable" : false,
+          "default" : "0",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "is_partial_tax_applied" : {
+          "type" : "boolean"
+        },
+        "tax_juris_type" : {
+          "type" : "string"
+        },
+        "tax_amount_in_local_currency" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_juris_name" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_juris_code" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "tax_name" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 100
+        },
+        "prorated_taxable_amount" : {
+          "type" : "decimal",
+          "precision" : "(38, 9)",
+          "minimum_value" : -1000000000,
+          "maximum_value" : 1000000000
+        },
+        "date_to" : {
+          "type" : "timestamp"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "is_non_compliance_tax" : {
+          "type" : "boolean"
+        },
+        "date_from" : {
+          "type" : "timestamp"
+        },
+        "taxable_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "local_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "line_item_taxes"
+    },
+    "customers" : {
+      "properties" : {
+        "billing_date_mode" : {
+          "type" : "string"
+        },
+        "billing_day_of_week" : {
+          "type" : "string"
+        },
+        "client_profile_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "child_account_access_send_payment_emails" : {
+          "type" : "boolean"
+        },
+        "first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "entity_code" : {
+          "type" : "string"
+        },
+        "vat_number" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "entity_identifier_standard" : {
+          "type" : "string",
+          "default" : "iso6523-actorid-upis",
+          "max_length" : 50
+        },
+        "is_einvoice_enabled" : {
+          "type" : "boolean"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "relationship_invoice_owner_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "vat_number_prefix" : {
+          "type" : "string",
+          "max_length" : 10
+        },
+        "billing_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "relationship_parent_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "is_location_valid" : {
+          "type" : "boolean"
+        },
+        "created_from_ip" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "exempt_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "net_term_days" : {
+          "type" : "integer",
+          "nullable" : false,
+          "default" : "0"
+        },
+        "billing_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "backup_payment_source_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "billing_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "billing_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "consolidated_invoicing" : {
+          "type" : "boolean"
+        },
+        "vat_number_validated_time" : {
+          "type" : "timestamp"
+        },
+        "billing_date" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 31
+        },
+        "billing_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "parent_account_access_send_subscription_emails" : {
+          "type" : "boolean"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "parent_account_access_portal_edit_child_subscriptions" : {
+          "type" : "string"
+        },
+        "locale" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "exemption_details" : {
+          "type" : "string"
+        },
+        "vat_number_status" : {
+          "type" : "string"
+        },
+        "company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "parent_account_access_portal_download_child_invoices" : {
+          "type" : "string"
+        },
+        "fraud_flag" : {
+          "type" : "string"
+        },
+        "business_customer_without_vat_number" : {
+          "type" : "boolean"
+        },
+        "use_default_hierarchy_settings" : {
+          "type" : "boolean",
+          "default" : "true"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "payment_method_gateway" : {
+          "type" : "string"
+        },
+        "payment_method_type" : {
+          "type" : "string"
+        },
+        "last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "child_account_access_send_subscription_emails" : {
+          "type" : "boolean"
+        },
+        "taxability" : {
+          "type" : "string",
+          "default" : "taxable"
+        },
+        "relationship_payment_owner_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "pii_cleared" : {
+          "type" : "string",
+          "default" : "active"
+        },
+        "billing_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "payment_method_gateway_account_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "active_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "customer_type" : {
+          "type" : "string"
+        },
+        "billing_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "offline_payment_method" : {
+          "type" : "string"
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "auto_collection" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "on"
+        },
+        "payment_method_reference_id" : {
+          "type" : "string",
+          "max_length" : 200
+        },
+        "invoice_notes" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "billing_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "parent_account_access_send_payment_emails" : {
+          "type" : "boolean"
+        },
+        "billing_day_of_week_mode" : {
+          "type" : "string"
+        },
+        "einvoicing_method" : {
+          "type" : "string"
+        },
+        "allow_direct_debit" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "child_account_access_portal_edit_subscriptions" : {
+          "type" : "string"
+        },
+        "child_account_access_portal_download_invoices" : {
+          "type" : "string"
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "billing_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "child_account_access_send_invoice_emails" : {
+          "type" : "boolean"
+        },
+        "payment_method_status" : {
+          "type" : "string",
+          "default" : "valid"
+        },
+        "meta_data" : {
+          "type" : "string"
+        },
+        "billing_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "billing_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "auto_close_invoices" : {
+          "type" : "boolean"
+        },
+        "billing_month" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 12
+        },
+        "registered_for_gst" : {
+          "type" : "boolean"
+        },
+        "preferred_currency_code" : {
+          "type" : "string",
+          "max_length" : 3
+        },
+        "parent_account_access_send_invoice_emails" : {
+          "type" : "boolean"
+        },
+        "phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "entity_identifier_scheme" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "primary_payment_source_id" : {
+          "type" : "string",
+          "max_length" : 40
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "customer"
+    },
+    "item_price_custom_fields" : {
+      "properties" : {
+        "item_price_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "item_prices",
+      "source_name" : "item_price"
+    },
+    "credit_note_line_items" : {
+      "properties" : {
+        "amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "entity_description" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "quantity" : {
+          "type" : "integer",
+          "default" : "1"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "tax_rate" : {
+          "type" : "double",
+          "minimum_value" : 0,
+          "maximum_value" : 100
+        },
+        "description" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 250
+        },
+        "item_level_discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "tax_exempt_reason" : {
+          "type" : "string"
+        },
+        "entity_type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "amount" : {
+          "type" : "long"
+        },
+        "is_taxed" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "entity_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "discount_amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "date_to" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "reference_line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "pricing_model" : {
+          "type" : "string"
+        },
+        "tax_amount" : {
+          "type" : "long",
+          "default" : "0",
+          "minimum_value" : 0
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "date_from" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "line_items"
+    },
+    "credit_note_line_item_tiers" : {
+      "properties" : {
+        "line_item_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "starting_unit" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "starting_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "unit_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "quantity_used" : {
+          "type" : "integer",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "ending_unit_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "quantity_used_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "ending_unit" : {
+          "type" : "integer"
+        },
+        "unit_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "line_item_tiers"
+    },
+    "ramps" : {
+      "properties" : {
+        "coupons_to_remove" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "status_transition_reason_message" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "description" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "discounts_to_remove" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "items_to_remove" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "status_transition_reason_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "created_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "effective_from" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "ramp"
+    },
+    "transactions" : {
+      "properties" : {
+        "error_detail_recommendation_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "custom_payment_method_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "iin" : {
+          "type" : "string",
+          "max_length" : 6
+        },
+        "id_at_gateway" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "customer_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "reversal_transaction_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "gateway_account_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "amount_capturable" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "error_detail_processor_error_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "error_detail_processor_error_message" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "error_detail_error_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "amount_unused" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "masked_card_number" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "initiator_type" : {
+          "type" : "string"
+        },
+        "payment_method_details" : {
+          "type" : "string"
+        },
+        "gateway" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "reference_transaction_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 0
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "payment_method" : {
+          "type" : "string",
+          "nullable" : false,
+          "default" : "card"
+        },
+        "fraud_flag" : {
+          "type" : "string"
+        },
+        "error_detail_recommendation_message" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "last4" : {
+          "type" : "string",
+          "max_length" : 4
+        },
+        "error_detail_network_error_message" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "date" : {
+          "type" : "timestamp"
+        },
+        "error_detail_error_field" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "error_detail_request_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "status" : {
+          "type" : "string"
+        },
+        "payment_source_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "error_detail_decline_message" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "reference_authorization_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "error_text" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "three_d_secure" : {
+          "type" : "boolean"
+        },
+        "error_detail_decline_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "authorization_reason" : {
+          "type" : "string"
+        },
+        "error_detail_error_category" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "merchant_reference_id" : {
+          "type" : "string",
+          "max_length" : 500
+        },
+        "subscription_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "error_detail_error_message" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "fraud_reason" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "settled_at" : {
+          "type" : "timestamp"
+        },
+        "error_detail_network_error_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "type" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "refunded_txn_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "error_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "reference_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "custom_payment_method_name" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "voided_at" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "transaction"
+    },
+    "subscription_custom_fields" : {
+      "properties" : {
+        "subscription_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "subscriptions",
+      "source_name" : "subscription"
+    },
+    "credit_note_linked_refunds" : {
+      "properties" : {
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "applied_at" : {
+          "type" : "timestamp",
+          "nullable" : false
+        },
+        "applied_amount" : {
+          "type" : "long",
+          "nullable" : false,
+          "minimum_value" : 0
+        },
+        "refund_reason_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "txn_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 40
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "linked_refunds"
+    },
+    "subscriptions" : {
+      "properties" : {
+        "cancel_reason_code" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "cancel_reason" : {
+          "type" : "string"
+        },
+        "referral_info_friend_offer_type" : {
+          "type" : "string"
+        },
+        "shipping_address_email" : {
+          "type" : "string",
+          "max_length" : 70
+        },
+        "trial_start" : {
+          "type" : "timestamp"
+        },
+        "shipping_address_last_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "free_period" : {
+          "type" : "integer"
+        },
+        "shipping_address_first_name" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "referral_info_referrer_reward_type" : {
+          "type" : "string"
+        },
+        "shipping_address_validation_status" : {
+          "type" : "string",
+          "default" : "not_validated"
+        },
+        "channel" : {
+          "type" : "string"
+        },
+        "override_relationship" : {
+          "type" : "boolean"
+        },
+        "start_date" : {
+          "type" : "timestamp"
+        },
+        "customer_id" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "shipping_address_phone" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_state_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_line2" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "plan_unit_price_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "cancelled_at" : {
+          "type" : "timestamp"
+        },
+        "created_from_ip" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "net_term_days" : {
+          "type" : "integer"
+        },
+        "referral_info_reward_status" : {
+          "type" : "string",
+          "default" : "pending"
+        },
+        "referral_info_external_reference_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_state" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "contract_term_billing_cycle_on_renewal" : {
+          "type" : "integer",
+          "minimum_value" : 1,
+          "maximum_value" : 100
+        },
+        "remaining_billing_cycles" : {
+          "type" : "integer",
+          "minimum_value" : 0
+        },
+        "referral_info_post_purchase_widget_enabled" : {
+          "type" : "boolean",
+          "default" : "true"
+        },
+        "cancel_schedule_created_at" : {
+          "type" : "timestamp"
+        },
+        "free_period_unit" : {
+          "type" : "string"
+        },
+        "referral_info_destination_url" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "shipping_address_line1" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "trial_end_action" : {
+          "type" : "string"
+        },
+        "referral_info_notify_referral_system" : {
+          "type" : "string"
+        },
+        "referral_info_account_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "started_at" : {
+          "type" : "timestamp"
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "create_pending_invoices" : {
+          "type" : "boolean"
+        },
+        "referral_info_campaign_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "has_scheduled_advance_invoices" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "current_term_start" : {
+          "type" : "timestamp"
+        },
+        "referral_info_referral_system" : {
+          "type" : "string"
+        },
+        "po_number" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 50
+        },
+        "business_entity_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "resume_date" : {
+          "type" : "timestamp"
+        },
+        "activated_at" : {
+          "type" : "timestamp"
+        },
+        "plan_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "status" : {
+          "type" : "string",
+          "nullable" : false
+        },
+        "plan_amount_in_decimal" : {
+          "type" : "string",
+          "max_length" : 39
+        },
+        "trial_end" : {
+          "type" : "timestamp"
+        },
+        "referral_info_coupon_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "payment_source_id" : {
+          "type" : "string",
+          "max_length" : 40
+        },
+        "shipping_address_city" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "changes_scheduled_at" : {
+          "type" : "timestamp"
+        },
+        "active_id" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "shipping_address_zip" : {
+          "type" : "string",
+          "max_length" : 20
+        },
+        "created_at" : {
+          "type" : "timestamp"
+        },
+        "referral_info_referrer_id" : {
+          "type" : "string",
+          "max_length" : 19
+        },
+        "shipping_address_line3" : {
+          "type" : "string",
+          "max_length" : 150
+        },
+        "invoice_notes" : {
+          "type" : "string",
+          "max_length" : 2000
+        },
+        "pause_date" : {
+          "type" : "timestamp"
+        },
+        "next_billing_at" : {
+          "type" : "timestamp"
+        },
+        "referral_info_referral_code" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "shipping_address_company" : {
+          "type" : "string",
+          "max_length" : 250
+        },
+        "currency_code" : {
+          "type" : "string",
+          "nullable" : false,
+          "max_length" : 3
+        },
+        "meta_data" : {
+          "type" : "string"
+        },
+        "has_scheduled_changes" : {
+          "type" : "boolean",
+          "nullable" : false,
+          "default" : "false"
+        },
+        "referral_info_external_campaign_id" : {
+          "type" : "string",
+          "max_length" : 100
+        },
+        "auto_close_invoices" : {
+          "type" : "boolean"
+        },
+        "plan_free_quantity_in_decimal" : {
+          "type" : "string",
+          "max_length" : 33
+        },
+        "shipping_address_country" : {
+          "type" : "string",
+          "max_length" : 50
+        },
+        "current_term_end" : {
+          "type" : "timestamp"
+        }
+      },
+      "is_parent_resource" : true,
+      "source_name" : "subscription"
+    },
+    "tax_withheld" : {
+      "properties" : {
+        "description" : {
+          "type" : "string",
+          "max_length" : 65000
+        },
+        "amount" : {
+          "type" : "long",
+          "minimum_value" : 1
+        },
+        "resource_version" : {
+          "type" : "long"
+        },
+        "id" : {
+          "type" : "string",
+          "is_primary_key" : true,
+          "nullable" : false,
+          "max_length" : 40
+        },
+        "date" : {
+          "type" : "timestamp"
+        },
+        "updated_at" : {
+          "type" : "timestamp"
+        },
+        "reference_number" : {
+          "type" : "string",
+          "max_length" : 100
+        }
+      },
+      "is_parent_resource" : true
+    }
+  }
+}
