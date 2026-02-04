@@ -968,6 +968,30 @@
       "parent_resource" : "coupons",
       "source_name" : "coupon"
     },
+    "invoice_custom_fields" : {
+      "properties" : {
+        "invoice_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "source_name" : "invoice_id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "invoices",
+      "source_name" : "invoice"
+    },
+    "credit_note_custom_fields" : {
+      "properties" : {
+        "credit_note_id" : {
+          "type" : "string",
+          "is_parent_id" : true,
+          "source_name" : "credit_note_id"
+        }
+      },
+      "is_parent_resource" : false,
+      "parent_resource" : "credit_notes",
+      "source_name" : "credit_note"
+    },
     "resent_orders" : {
       "properties" : {
         "order_id" : {
